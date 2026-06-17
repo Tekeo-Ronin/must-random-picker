@@ -191,9 +191,26 @@ button:hover,
 
 .actions {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
   margin-top: 28px;
+}
+
+.history-actions,
+.main-actions {
+  display: flex;
+  gap: 12px;
   flex-wrap: wrap;
+}
+
+.history-actions button {
+  min-width: 118px;
+}
+
+.main-actions button,
+.main-actions .open-link {
+  min-width: 180px;
 }
 
 #pick-another-button {
@@ -235,7 +252,18 @@ button:hover,
   }
 
   .actions {
+    align-items: stretch;
+  }
+
+  .history-actions,
+  .main-actions {
     justify-content: center;
+  }
+
+  .history-actions button,
+  .main-actions button,
+  .main-actions .open-link {
+    width: 100%;
   }
 }
 
@@ -280,4 +308,15 @@ button:hover,
   color: #cbd5e1;
   line-height: 1.6;
   font-size: 15px;
+}
+
+.secondary-button {
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(15, 23, 42, 0.8);
+  color: #cbd5e1;
+}
+
+.secondary-button:hover {
+  color: #f8fafc;
+  border-color: rgba(196, 181, 253, 0.45);
 }

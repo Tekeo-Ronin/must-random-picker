@@ -1,7 +1,9 @@
 const form = document.querySelector("#picker-form");
-const usernameInput = document.querySelector("#username-input");
+const usernameInput = document.querySelector("#profile-input");
 const pickButton = document.querySelector("#pick-button");
+const backButton = document.querySelector("#back-button");
 const pickAnotherButton = document.querySelector("#pick-another-button");
+const nextButton = document.querySelector("#next-button");
 
 const statusElement = document.querySelector("#status");
 const movieCard = document.querySelector("#movie-card");
@@ -14,7 +16,9 @@ const openMustLink = document.querySelector("#open-must-link");
 
 let loadedUsername = "";
 let loadedMovies = [];
-let currentMovieId = null;
+
+let viewedMovies = [];
+let currentHistoryIndex = -1;
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -30,8 +34,13 @@ form.addEventListener("submit", async (event) => {
     setLoading(true);
     hideMovie();
 
-    if (username !== loadedUsername || loadedMovies.length === 0) {
+    const isNewUsername = username !== loadedUsername;
+
+    if (isNewUsername || loadedMovies.length === 0) {
       showStatus("Loading your Must Want list...");
+
+      resetMovieHistory();
+
       loadedMovies = await loadMoviesFromWantList(username);
       loadedUsername = username;
     }
@@ -57,6 +66,26 @@ usernameInput.addEventListener("keydown", (event) => {
 
 pickAnotherButton.addEventListener("click", () => {
   pickRandomMovie();
+});
+
+backButton.addEventListener("click", () => {
+  if (currentHistoryIndex <= 0) {
+    return;
+  }
+
+  currentHistoryIndex -= 1;
+  renderMovie(viewedMovies[currentHistoryIndex]);
+  updateHistoryButtons();
+});
+
+nextButton.addEventListener("click", () => {
+  if (currentHistoryIndex >= viewedMovies.length - 1) {
+    return;
+  }
+
+  currentHistoryIndex += 1;
+  renderMovie(viewedMovies[currentHistoryIndex]);
+  updateHistoryButtons();
 });
 
 function extractUsername(input) {
@@ -150,6 +179,9 @@ function pickRandomMovie() {
     return;
   }
 
+  const currentMovie = viewedMovies[currentHistoryIndex];
+  const currentMovieId = currentMovie?.id;
+
   let movie = loadedMovies[Math.floor(Math.random() * loadedMovies.length)];
 
   if (loadedMovies.length > 1) {
@@ -158,8 +190,17 @@ function pickRandomMovie() {
     }
   }
 
-  currentMovieId = movie.id;
+  // If the user went Back and then picks a new movie,
+  // remove the future history, like a browser does.
+  if (currentHistoryIndex < viewedMovies.length - 1) {
+    viewedMovies = viewedMovies.slice(0, currentHistoryIndex + 1);
+  }
+
+  viewedMovies.push(movie);
+  currentHistoryIndex = viewedMovies.length - 1;
+
   renderMovie(movie);
+  updateHistoryButtons();
 }
 
 function renderMovie(movie) {
@@ -299,6 +340,23 @@ function formatRuntime(value) {
   return `${hours}h ${minutes}m`;
 }
 
+function resetMovieHistory() {
+  viewedMovies = [];
+  currentHistoryIndex = -1;
+  updateHistoryButtons();
+}
+
+function updateHistoryButtons() {
+  const canGoBack = currentHistoryIndex > 0;
+  const canGoNext = currentHistoryIndex < viewedMovies.length - 1;
+
+  backButton.classList.toggle("hidden", !canGoBack);
+  nextButton.classList.toggle("hidden", !canGoNext);
+
+  backButton.disabled = !canGoBack;
+  nextButton.disabled = !canGoNext;
+}
+
 function showStatus(message) {
   statusElement.textContent = message;
 }
@@ -310,6 +368,12 @@ function hideMovie() {
 function setLoading(isLoading) {
   pickButton.disabled = isLoading;
   pickAnotherButton.disabled = isLoading;
+
+  const canGoBack = currentHistoryIndex > 0;
+  const canGoNext = currentHistoryIndex < viewedMovies.length - 1;
+
+  backButton.disabled = isLoading || !canGoBack;
+  nextButton.disabled = isLoading || !canGoNext;
 
   if (isLoading) {
     pickButton.textContent = "Loading...";

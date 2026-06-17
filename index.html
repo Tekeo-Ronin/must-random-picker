@@ -48,18 +48,22 @@
           random movie from your Want list.
         </p>
 
-        <form id="picker-form" class="form">
+        <form id="picker-form" class="form" autocomplete="off">
           <input
-            id="username-input"
-            type="text"
-            placeholder="@username or https://mustapp.com/@username"
+            id="profile-input"
+            name="must-profile"
+            type="search"
+            placeholder="@profile or https://mustapp.com/@profile"
             autocomplete="off"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
+            inputmode="text"
             required
           />
 
           <button id="pick-button" type="submit">Pick random movie</button>
         </form>
-
         <p class="privacy-note">
           No login required. This tool only reads public Must profile data.
         </p>
@@ -81,17 +85,39 @@
           <p id="movie-meta" class="movie-meta"></p>
 
           <div class="actions">
-            <button id="pick-another-button" type="button">Pick another</button>
+            <div class="history-actions">
+              <button
+                id="back-button"
+                class="secondary-button hidden"
+                type="button"
+              >
+                Back
+              </button>
 
-            <a
-              id="open-must-link"
-              class="open-link"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open in Must
-            </a>
+              <button
+                id="next-button"
+                class="secondary-button hidden"
+                type="button"
+              >
+                Next
+              </button>
+            </div>
+
+            <div class="main-actions">
+              <button id="pick-another-button" type="button">
+                Pick another
+              </button>
+
+              <a
+                id="open-must-link"
+                class="open-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open in Must
+              </a>
+            </div>
           </div>
         </div>
       </article>
