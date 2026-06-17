@@ -2,6 +2,8 @@
 
 A simple web tool that picks a random movie from your Mustapp Want list.
 
+<img src="./assets/screenshot.png" alt="Must Random Picker screenshot" width="100%">
+
 ## Live site
 
 https://tekeo-ronin.github.io/must-random-picker/
