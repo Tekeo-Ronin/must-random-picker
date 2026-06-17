@@ -48,6 +48,13 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
+usernameInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    form.requestSubmit();
+  }
+});
+
 pickAnotherButton.addEventListener("click", () => {
   pickRandomMovie();
 });
@@ -156,8 +163,6 @@ function pickRandomMovie() {
 }
 
 function renderMovie(movie) {
-  console.log("Selected movie:", movie);
-
   const title = movie.title || "Untitled";
   const releaseYear = getYear(movie.release_date);
   const runtime = formatRuntime(movie.runtime);
