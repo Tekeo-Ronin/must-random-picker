@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tekeo-ronin.github.io/must-random-picker/sitemap.xml
