@@ -24,8 +24,12 @@ body {
 
 .app {
   width: min(920px, calc(100% - 32px));
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 64px 0;
+  padding: 64px 0 24px;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .hero {
@@ -199,7 +203,7 @@ button:hover,
 
 @media (max-width: 720px) {
   .app {
-    padding: 36px 0;
+    padding: 36px 0 20px;
   }
 
   .form {
@@ -230,7 +234,8 @@ button:hover,
 }
 
 .footer {
-  margin-top: 48px;
+  margin-top: auto;
+  padding-top: 48px;
   text-align: center;
   color: #64748b;
   font-size: 13px;
