@@ -228,3 +228,20 @@ button:hover,
     justify-content: center;
   }
 }
+
+.footer {
+  margin-top: 48px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.footer a {
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #c4b5fd;
+  text-decoration: underline;
+}

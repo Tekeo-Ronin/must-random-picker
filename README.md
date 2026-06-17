@@ -1,6 +1,10 @@
-# Must Random Picker
+# [Must Random Picker](https://tekeo-ronin.github.io/must-random-picker/)
 
 A simple web tool that picks a random movie from your Mustapp Want list.
+
+## Live site
+
+https://tekeo-ronin.github.io/must-random-picker/
 
 ## What it does
 
