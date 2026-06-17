@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Must Random Picker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="hero">
+        <h1>Pick a random movie from your Must Want list</h1>
+        <p class="subtitle">
+          Paste your Must username or profile link. The site will choose one
+          random movie from your Want list.
+        </p>
+
+        <form id="picker-form" class="form">
+          <input
+            id="username-input"
+            type="text"
+            placeholder="@username or https://mustapp.com/@username"
+            autocomplete="off"
+            required
+          />
+
+          <button id="pick-button" type="submit">Pick random movie</button>
+        </form>
+
+        <p class="privacy-note">
+          No login required. This tool only reads public Must profile data.
+        </p>
+      </section>
+
+      <p id="status" class="status"></p>
+
+      <article id="movie-card" class="movie-card hidden">
+        <div class="poster-box">
+          <img id="movie-poster" alt="" />
+          <div id="poster-placeholder" class="poster-placeholder">
+            No poster
+          </div>
+        </div>
+
+        <div class="movie-info">
+          <p id="movie-type" class="movie-type"></p>
+          <h2 id="movie-title"></h2>
+          <p id="movie-meta" class="movie-meta"></p>
+
+          <div class="actions">
+            <button id="pick-another-button" type="button">Pick another</button>
+
+            <a
+              id="open-must-link"
+              class="open-link"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open in Must
+            </a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
