@@ -4,13 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>
-      Must Random Picker — Pick a Random Movie from Your Must Want List
-    </title>
+    <title>Must Random Picker — Random Movie from Mustapp</title>
 
     <meta
       name="description"
-      content="Pick a random movie from your Mustapp Want list. Enter your Must username or profile link and get one random movie to watch."
+      content="Must Random Picker helps Mustapp users choose what to watch next. Paste a Must profile link or username and instantly get a random movie from your Want list."
     />
 
     <link
@@ -21,8 +19,9 @@
     <meta property="og:title" content="Must Random Picker" />
     <meta
       property="og:description"
-      content="Pick a random movie from your Mustapp Want list."
+      content="Paste your Must profile link or username and get a random movie from your Want list."
     />
+
     <meta property="og:type" content="website" />
     <meta
       property="og:url"
@@ -33,11 +32,29 @@
     <meta name="twitter:title" content="Must Random Picker" />
     <meta
       name="twitter:description"
-      content="Pick a random movie from your Mustapp Want list."
+      content="Paste your Must profile link or username and get a random movie from your Want list."
     />
 
+    <link rel="icon" href="./favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="stylesheet" href="style.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Must Random Picker",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "Any",
+        "url": "https://tekeo-ronin.github.io/must-random-picker/",
+        "description": "A simple web tool that picks a random movie from your Mustapp Want list.",
+        "creator": {
+          "@type": "Person",
+          "name": "tekeo-ronin",
+          "url": "https://github.com/tekeo-ronin"
+        }
+      }
+    </script>
   </head>
   <body>
     <main class="app">
